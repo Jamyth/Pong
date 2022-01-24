@@ -35,7 +35,7 @@ export class Ball extends Component<Phaser.GameObjects.Rectangle> {
     }
 
     reflect(x: number) {
-        this.dx = -this.dx * 1.06;
+        this.dx = -this.dx * 1.1;
         this.x = x;
         const dy = Math.random() * 140 + 10;
         this.dy = this.dy < 0 ? -dy : dy;

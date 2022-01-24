@@ -91,12 +91,12 @@ export class MainScene extends SceneLifeCycle {
             this.physics.collide(this.ball.getComponent(), this.player1.getComponent(), () => {
                 this.ball.reflect(this.player1.getX() + this.player1.getWidth());
                 this.removeBalls();
-                this.generateBalls(10);
+                this.generateBalls(3);
             });
             this.physics.collide(this.ball.getComponent(), this.player2.getComponent(), () => {
                 this.ball.reflect(this.player2.getX() - this.ball.getWidth());
                 this.removeBalls();
-                this.generateBalls(10);
+                this.generateBalls(3);
             });
 
             if (this.ball.getX() < 0) {
