@@ -8,7 +8,7 @@ import { Score } from 'component/Score';
 export class MainScene extends SceneLifeCycle {
     private readonly PADDLE_SPEED = 200;
     private readonly BALL_AMOUNT = 3;
-    private readonly BALL_GENERATE_POSS = 25;
+    private readonly BALL_GENERATE_POSS = 80;
     private readonly WINNING_CONDITION = 10;
 
     private player1: Paddle;
@@ -165,7 +165,7 @@ export class MainScene extends SceneLifeCycle {
                 this.ball.getHeight(),
                 this.ball.getDx(),
             ).create(this);
-            ball.setColor(0xeaeaea);
+            ball.setColor(0xaeaeae);
             this.balls.push(ball);
         }
     }
