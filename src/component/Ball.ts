@@ -8,6 +8,8 @@ export class Ball extends Component<Phaser.GameObjects.Rectangle> {
     private height: number;
     private dx: number;
     private dy: number;
+    private color: number;
+    private servingPlayer: 1 | 2 | undefined;
 
     constructor(
         private readonly initialX: number,
@@ -23,12 +25,24 @@ export class Ball extends Component<Phaser.GameObjects.Rectangle> {
         this.height = height;
         this.dx = targetDx ? targetDx : Math.floor(Math.random() * 2) === 1 ? 100 : -100;
         this.dy = targetDx ? Math.random() * 140 + 10 : Math.random() * 100 - 50;
+        this.color = 0xffffff;
+    }
+
+    setServingPlayer(player: 1 | 2 | undefined) {
+        this.servingPlayer = player;
+    }
+
+    setColor(color: number) {
+        this.color = color;
     }
 
     reset() {
         this.x = this.initialX;
         this.y = this.initialY;
         this.dx = Math.floor(Math.random() * 2) === 1 ? 100 : -100;
+        if (this.servingPlayer !== undefined) {
+            this.dx = this.servingPlayer === 1 ? -100 : 100;
+        }
         this.dy = Math.random() * 100 - 50;
 
         this.setXY();
@@ -66,7 +80,7 @@ export class Ball extends Component<Phaser.GameObjects.Rectangle> {
     }
 
     create(scene: Phaser.Scene) {
-        this.gameObject = scene.add.rectangle(this.x, this.y, this.width, this.height, 0xffffff);
+        this.gameObject = scene.add.rectangle(this.x, this.y, this.width, this.height, this.color);
         scene.physics.add.existing(this.gameObject);
         return this;
     }
@@ -84,6 +98,7 @@ export class Ball extends Component<Phaser.GameObjects.Rectangle> {
         }
 
         this.setXY();
+        this.gameObject.setFillStyle(this.color);
     }
 
     private setXY() {
